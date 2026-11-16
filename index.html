@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Joker's Patience</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ====== СТАРТОВЫЙ ЭКРАН ====== -->
+  <section id="screen-start" class="screen active">
+    <div class="glass-panel intro-panel">
+      <h1 class="game-title">Joker's Patience</h1>
+      <p class="subtitle">Стеклянный пасьянс для вдумчивых умов</p>
+      <div class="instruction">
+        <p>Соберите покерную комбинацию из руки в 8 карт. Каждая комбинация даёт <b>chips</b> и <b>mult</b> — их произведение идёт в счёт раунда.</p>
+        <p>Используйте <b>джокеров</b> — они меняют правила и взаимодействуют друг с другом. Порядок срабатывания важен.</p>
+        <p>Сбрасывайте карты с умом: некоторые джокеры запоминают сброшенное.</p>
+        <p>Пройдите <b>6 раундов</b> с растущей целью. Каждый раунд гарантированно решаем.</p>
+      </div>
+      <button id="btn-start" class="glass-btn primary">Начать партию</button>
+      <div class="records-preview" id="records-preview"></div>
+    </div>
+  </section>
+
+  <!-- ====== ИГРОВОЙ ЭКРАН ====== -->
+  <section id="screen-game" class="screen">
+    <!-- Верхняя панель: таймер, раунд, счёт -->
+    <header class="game-header glass-panel">
+      <div class="header-item">
+        <span class="label">Раунд</span>
+        <span id="hud-round" class="value">1 / 6</span>
+      </div>
+      <div class="header-item">
+        <span class="label">Время</span>
+        <span id="hud-timer" class="value">00:00</span>
+      </div>
+      <div class="header-item">
+        <span class="label">Счёт</span>
+        <span id="hud-score" class="value">0</span>
+      </div>
+      <div class="header-item">
+        <span class="label">Цель</span>
+        <span id="hud-target" class="value">0</span>
+      </div>
+      <div class="header-item">
+        <span class="label">Раздачи</span>
+        <span id="hud-hands" class="value">4</span>
+      </div>
+      <div class="header-item">
+        <span class="label">Сбросы</span>
+        <span id="hud-discards" class="value">3</span>
+      </div>
+    </header>
+
+    <!-- Джокеры -->
+    <div class="jokers-row glass-panel" id="jokers-row">
+      <!-- заполняется динамически -->
+    </div>
+
+    <!-- Стол: рука, комбинация, кнопки -->
+    <main class="table-area">
+      <div class="hand-container glass-panel">
+        <div class="hand-header">
+          <span class="hand-label">Рука</span>
+          <span id="hand-info" class="hand-info">Выбрано: 0</span>
+        </div>
+        <div id="hand" class="hand"></div>
+      </div>
+
+      <div class="combo-panel glass-panel">
+        <div class="combo-name" id="combo-name">—</div>
+        <div class="combo-stats">
+          <span class="chips-label">Chips</span>
+          <span id="combo-chips" class="chips-value">0</span>
+          <span class="mult-label">×</span>
+          <span id="combo-mult" class="mult-value">0</span>
+        </div>
+        <div class="combo-total">Итог: <span id="combo-total">0</span></div>
+      </div>
+
+      <div class="action-bar">
+        <button id="btn-play" class="glass-btn primary" disabled>Играть комбинацию</button>
+        <button id="btn-discard" class="glass-btn" disabled>Сбросить выбранное</button>
+        <button id="btn-menu" class="glass-btn subtle">В меню</button>
+      </div>
+    </main>
+
+    <!-- Лог событий -->
+    <aside class="log-panel glass-panel" id="log-panel">
+      <div class="log-title">Журнал</div>
+      <div id="log" class="log"></div>
+    </aside>
+  </section>
+
+  <!-- ====== ЭКРАН РЕЗУЛЬТАТОВ ====== -->
+  <section id="screen-result" class="screen">
+    <div class="glass-panel result-panel">
+      <h2 id="result-title">Победа</h2>
+      <p id="result-subtitle"></p>
+      <div class="result-stats" id="result-stats"></div>
+      <button id="btn-restart" class="glass-btn primary">Играть снова</button>
+      <button id="btn-to-menu" class="glass-btn subtle">В меню</button>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
